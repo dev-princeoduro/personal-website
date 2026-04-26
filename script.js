@@ -83,28 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
 
-    // 5. Dark Mode Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    // 5. Hero Slider
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const slideInterval = 5000; // 5 seconds between slides
 
-    // Check Local Storage on load
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        if (themeToggle) themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-    }
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const icon = themeToggle.querySelector('i');
-
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                localStorage.setItem('theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            }
-        });
+        // Start cycling
+        setInterval(nextSlide, slideInterval);
     }
 });
