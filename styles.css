@@ -679,65 +679,94 @@ img {
 /* --- Responsive Media Queries --- */
 @media (max-width: 768px) {
     .navbar {
-        padding: 1rem 0;
+        padding: 0.6rem 0;
+        background: rgba(3, 7, 18, 0.95) !important; /* Force background on mobile for legibility */
+        backdrop-filter: blur(10px);
     }
 
     .nav-links {
         display: none;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        background: var(--bg-deep);
-        padding: var(--spacing-md);
-        box-shadow: var(--shadow-md);
-        text-align: center;
-        border-bottom: 1px solid var(--border-glass);
+        height: 100vh;
+        background: #030712 !important;
+        padding: 100px 2rem;
+        z-index: 999;
+        justify-content: flex-start;
     }
 
-    .nav-links.active {
-        display: flex;
-        animation: fadeInUp 0.3s ease;
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.8rem;
+        font-weight: 700;
     }
 
     .mobile-toggle {
         display: block;
+        z-index: 1001;
     }
 
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: var(--spacing-md);
-    }
-
-    .hero-content {
-        order: 2;
-    }
-
-    .hero-image-wrapper {
-        order: 1;
-        max-width: 400px;
-        margin: 0 auto;
+    .hero {
+        min-height: 90vh !important;
+        padding-top: 120px;
     }
 
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-content .subtext {
+        font-size: 1.1rem !important;
+        margin-bottom: 2rem !important;
     }
 
     .hero-btns {
-        justify-content: center;
+        flex-direction: column !important;
+        width: 100%;
+        padding: 0 10%;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
+    .hero-btns .btn {
+        width: 100% !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .about-grid, .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    .section-padding {
+        padding: 3rem 1.5rem !important;
     }
 
     .section-header h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem !important;
     }
 
-    .connect h2 {
-        font-size: 2.2rem;
+    /* Fix Projects stacking */
+    .about-grid {
+        direction: ltr !important;
+    }
+
+    .project-content {
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.7rem !important;
+    }
+    
+    .hero-content .subtext {
+        font-size: 1rem !important;
     }
 }
